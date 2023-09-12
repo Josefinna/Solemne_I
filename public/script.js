@@ -26,8 +26,9 @@ function mouseClick(e){
     nuevatarea.classList.add('task')
     nuevatarea.draggable = true
     nuevatarea.innerHTML=prompt("Agregar nueva tarea")
-    if(e.target.appendChild(nuevatarea)){
-    }
+    nuevatarea.addEventListener('dragstart', dragStart);
+    nuevatarea.addEventListener('dragend', dragEnd);
+    e.target.appendChild(nuevatarea)
 }
 function dragStart(e){
     draggedTask = e.target;
@@ -53,6 +54,7 @@ function dragDrop(e){
     e.preventDefault();
    if(e.target.classList.contains('column')){
     e.target.appendChild(draggedTask)
+    draggedTask = null
     console.log(e)
    }
 }
